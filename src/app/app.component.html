@@ -52,14 +52,26 @@
       <div class="title-area">
         <h2>List of Pets</h2>
       </div>
-      <div class="container ">
-        <div class="row">
-           <div class="card" *ngFor="let image of images" (deferLoad)="image.show = true" style="width: 18rem;">
-                <ng-container *ngIf="image.show">
+      <div class="container "
+     >
+        <div class="row"
+        infinite-scroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+      [infiniteScrollDisabled]="false"
+      [scrollWindow]="false" 
+      style="height: 400px; overflow-y: scroll;"
+       >
+               
+           <div class="card" *ngFor="let image of images " >
+             
                   <img class="card-img-top" src={{image.url}}>
-                </ng-container>
+               
                 <h5 class="card-title">{{randomtext}}</h5>
                 <a href="#" class="btn btn-primary">Buy now</a>
+            
+           
             </div>
       </div>  
       </div> 
